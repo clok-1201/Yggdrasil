@@ -9,11 +9,26 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/afybroker" />
+            <option value="$PROJECT_DIR$/afybroker/afybroker-boostrap" />
+            <option value="$PROJECT_DIR$/afybroker/afybroker-client" />
+            <option value="$PROJECT_DIR$/afybroker/afybroker-core" />
+            <option value="$PROJECT_DIR$/afybroker/afybroker-minestom" />
+            <option value="$PROJECT_DIR$/afybroker/afybroker-server" />
+            <option value="$PROJECT_DIR$/afybroker/afybroker-velocity" />
             <option value="$PROJECT_DIR$/api" />
             <option value="$PROJECT_DIR$/bedwars" />
             <option value="$PROJECT_DIR$/bedwars/example" />
-            <option value="$PROJECT_DIR$/limbo" />
+            <option value="$PROJECT_DIR$/bukkit-configuration" />
+            <option value="$PROJECT_DIR$/lobby" />
+            <option value="$PROJECT_DIR$/plugin-eco" />
+            <option value="$PROJECT_DIR$/server" />
+            <option value="$PROJECT_DIR$/server/lobby" />
+            <option value="$PROJECT_DIR$/tiny-logger" />
             <option value="$PROJECT_DIR$/util-InvUI" />
+            <option value="$PROJECT_DIR$/util-config" />
+            <option value="$PROJECT_DIR$/util-terminal" />
+            <option value="$PROJECT_DIR$/util-velocity" />
           </set>
         </option>
       </GradleProjectSettings>

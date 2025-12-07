@@ -1,8 +1,8 @@
 package com.c1ok.bedwars.simple.specialitems
 
 import com.c1ok.bedwars.BedwarsGame
-import com.c1ok.bedwars.Clickable
 import com.c1ok.bedwars.utils.getBedwarsPlayer
+import com.c1ok.yggdrasil.Clickable
 import com.c1ok.yggdrasil.MiniPlayer.Companion.getOrigin
 import net.minestom.server.entity.Player
 import net.minestom.server.item.Material
@@ -13,7 +13,7 @@ import xyz.xenondevs.invui.item.builder.ItemBuilder
 import xyz.xenondevs.invui.item.impl.SimpleItem
 import xyz.xenondevs.invui.window.Window
 
-class SelectTeam(val game: BedwarsGame): Clickable {
+open class SelectTeam(val game: BedwarsGame): Clickable {
 
     override val tagValue: String = "selectTeam"
     private val border = SimpleItem(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE))

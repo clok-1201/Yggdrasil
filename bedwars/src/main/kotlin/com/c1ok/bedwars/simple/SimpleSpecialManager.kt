@@ -1,9 +1,6 @@
 package com.c1ok.bedwars.simple
 
 import com.c1ok.bedwars.BedwarsGame
-import com.c1ok.bedwars.Clickable
-import com.c1ok.bedwars.SpecialItem
-import com.c1ok.bedwars.SpecialItemManager
 import com.c1ok.yggdrasil.*
 import net.minestom.server.event.Event
 import net.minestom.server.event.EventNode

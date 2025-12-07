@@ -13,10 +13,9 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("net.minestom:minestom:2025.09.13-1.21.8")
-    testImplementation("net.minestom:testing:2025.09.13-1.21.8")
     api("net.kyori:adventure-text-minimessage:4.23.0")
     api(project(":api"))
+    api(project(":lobby"))
     api(project(":util-InvUI"))
 }
 

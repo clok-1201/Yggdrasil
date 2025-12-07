@@ -1,15 +1,16 @@
 package com.c1ok.bedwars.exp
 
 import com.c1ok.bedwars.BaseBedwarsMachine
-import com.c1ok.bedwars.BedwarsPlayer
-import com.c1ok.bedwars.Team
-import com.c1ok.bedwars.instance.SimpleInstance
 import com.c1ok.bedwars.simple.SimpleBedwarsGame
+import com.c1ok.bedwars.simple.SimpleBedwarsGame.BedwarsPlayerCreator
+import com.c1ok.bedwars.simple.specialitems.ExitTeam
 import com.c1ok.bedwars.simple.specialitems.SelectTeam
 import com.c1ok.bedwars.utils.setSpecial
-import com.c1ok.yggdrasil.*
+import com.c1ok.yggdrasil.GameState
+import com.c1ok.yggdrasil.GameStateMachine
+import com.c1ok.yggdrasil.InstanceManager
+import com.c1ok.yggdrasil.MiniPlayer
 import com.c1ok.yggdrasil.MiniPlayer.Companion.getOrigin
-import com.c1ok.yggdrasil.base.Bound
 import com.c1ok.yggdrasil.util.Reason
 import com.c1ok.yggdrasil.util.Result
 import net.kyori.adventure.text.Component
@@ -18,14 +19,9 @@ import net.kyori.adventure.text.minimessage.MiniMessage
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder
 import net.minestom.server.coordinate.Pos
 import net.minestom.server.entity.GameMode
-import net.minestom.server.event.entity.EntityDeathEvent
-import net.minestom.server.event.player.PlayerBlockBreakEvent
-import net.minestom.server.event.player.PlayerBlockPlaceEvent
-import net.minestom.server.event.player.PlayerDeathEvent
 import net.minestom.server.item.ItemStack
 import net.minestom.server.item.Material
 import net.minestom.server.scoreboard.Sidebar
-import net.minestom.server.timer.Task
 import java.util.*
 import java.util.concurrent.CompletableFuture
 
@@ -105,6 +101,7 @@ open class ExpBedwarsGame(
         addTeams()
         if (isFirst) {
             addSpecial(SelectTeam(this))
+            addSpecial(ExitTeam(this))
         }
         return super.init()
     }

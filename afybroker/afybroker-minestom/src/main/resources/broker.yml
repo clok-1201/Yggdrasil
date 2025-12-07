@@ -1,0 +1,22 @@
+broker:
+  # broker 网关服务器地址
+  host: localhost
+  # broker 网关服务器端口
+  port: 11200
+  # 客户端名称 每个客户端应该唯一 建议和bungee内的此服务端名称保持一致，如spawn1、lobby1等
+  name: 'bukkit-%unique_id%'
+  # 客户端默认标签 可以删除
+  tags: ['bukkit', 'server']
+  # 元数据信息 字符串键值对 自行拓展
+  metadata:
+  #key1: 'value1'
+  #key2: 'value2'
+
+server:
+  # 主线程安全检查 防止在主线程中发起远程调用，避免阻塞主线程 ，默认启用
+  thread-check: true
+  # mc 服务器的 ip端口 信息，用于将服务器自动注册到 proxy(bungee,velocity)
+  # 当与 proxy 不在一台设备上或存在端口映射则需要配置
+
+  #host: localhost
+  #port: 25565

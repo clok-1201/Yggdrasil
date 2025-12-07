@@ -8,6 +8,7 @@ import com.c1ok.yggdrasil.GameState
 import com.c1ok.yggdrasil.MiniPlayer
 import com.c1ok.yggdrasil.MiniPlayer.Companion.getOrigin
 import com.c1ok.yggdrasil.MiniPlayer.Companion.getOriginUnsafe
+import com.c1ok.yggdrasil.SpecialItemManager
 import com.c1ok.yggdrasil.base.BaseMiniGame
 import com.c1ok.yggdrasil.util.Reason
 import com.c1ok.yggdrasil.util.Result
@@ -195,19 +196,17 @@ abstract class SimpleBedwarsGame(
     @Synchronized
     override fun removePlayer(player: MiniPlayer): Result<Boolean> {
         val bedwarsPlayer = bedwarsPlayers.firstOrNull { it.miniPlayer == player } ?: return Result(false, Reason.Failed("玩家不存在在这场游戏中"))
-        val minePlayer = player.getOrigin() ?: let {
-            bedwarsPlayers.removeIf { it.miniPlayer == player }
-            bedwarsPlayer.getTeam()?.removePlayer(bedwarsPlayer)
-            return Result(false, Reason.Failed("玩家不存在"))
-        }
-        bedwarsPlayer.storedInventory.with(minePlayer)
+        val minePlayer = player.getOrigin()
+        bedwarsPlayers.removeIf { it.miniPlayer == player }
         bedwarsPlayer.getTeam()?.removePlayer(bedwarsPlayer)
+        minePlayer ?: return Result.createFailed("玩家不存在")
+        bedwarsPlayer.storedInventory.with(minePlayer)
         if (gameStateMachine.getCurrentState() == GameState.LOBBY) {
             getLobbySidebar().removeViewer(minePlayer)
         }
         player.game = null
         // TODO Set Player Instance To Lobby
-         minePlayer.setInstance(Bedwars.instance.lobby.instance, Bedwars.instance.lobby.respawnPos  )
+         minePlayer.setInstance(Bedwars.instance.lobby.world, Bedwars.instance.lobby.respawnPos)
         return Result(true, Reason.Success)
     }
 

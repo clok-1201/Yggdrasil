@@ -2,6 +2,7 @@ package com.c1ok.bedwars
 
 import com.c1ok.yggdrasil.MiniGame
 import com.c1ok.yggdrasil.MiniPlayer
+import com.c1ok.yggdrasil.SpecialItemManager
 import net.minestom.server.event.player.PlayerBlockBreakEvent
 import net.minestom.server.event.player.PlayerBlockPlaceEvent
 import net.minestom.server.event.player.PlayerDeathEvent

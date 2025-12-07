@@ -3,16 +3,14 @@ package com.c1ok.bedwars
 import com.c1ok.bedwars.simple.BedwarsManager
 import com.c1ok.bedwars.simple.SimpleSpecialManager
 import com.c1ok.bedwars.simple.listener.SimplePlayerListener
-import com.c1ok.yggdrasil.GameManager
 import com.c1ok.yggdrasil.MiniPlayerManager
 import com.c1ok.yggdrasil.network.onPlayerSpawnNetwork
+import com.yggdrasil.lobby.Lobby
 import net.minestom.server.MinecraftServer
 import net.minestom.server.ServerProcess
-import net.minestom.server.coordinate.Pos
 import net.minestom.server.event.Event
 import net.minestom.server.event.EventNode
 import net.minestom.server.event.player.PlayerSpawnEvent
-import net.minestom.server.instance.Instance
 import net.minestom.server.utils.validate.Check
 
 /**
@@ -45,8 +43,6 @@ class Bedwars(
 
     }
 
-    class Lobby(val instance: Instance, val respawnPos: Pos)
-
     var debug: Boolean = true
 
 
@@ -78,7 +74,9 @@ class Bedwars(
     }
 
     private fun registerEventNode() {
-        minecraftProcess.eventHandler().addChild(eventNode)
+        if (MinecraftServer.getGlobalEventHandler().findChildren(eventNode.name).isEmpty()) {
+            minecraftProcess.eventHandler().addChild(eventNode)
+        }
         if (isSimple) {
             SimplePlayerListener.register()
             SimpleSpecialManager.registerListenerToGame(eventNode, playerManager)
@@ -93,17 +91,16 @@ class Bedwars(
 
         private lateinit var gameManager: BedwarsManager
 
-        private lateinit var lobby: Instance
+        private lateinit var lobby: Lobby
 
-        private lateinit var respawnPos: Pos
 
         /**
          * 是否应用简单模式的模板
          */
         private var isSimple: Boolean = true
 
-        fun setLobby(instance: Instance): Builder {
-            this.lobby = instance
+        fun setLobby(lobby: Lobby): Builder {
+            this.lobby = lobby
             return this
         }
 
@@ -127,13 +124,9 @@ class Bedwars(
             return this
         }
 
-        fun setRespawnPos(pos: Pos): Builder {
-            this.respawnPos = pos
-            return this
-        }
 
         fun build(): Bedwars {
-            val bedwars= Bedwars(eventNode, playerManager, gameManager, process, Lobby(lobby, respawnPos))
+            val bedwars= Bedwars(eventNode, playerManager, gameManager, process, lobby)
             bedwars.isSimple = isSimple
             return bedwars
         }
